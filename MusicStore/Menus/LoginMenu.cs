@@ -1,7 +1,7 @@
-﻿using Exam.Services;
-using Exam.Models;
+using MusicStore.Services;
+using MusicStore.Models;
 
-namespace Exam.Menus;
+namespace MusicStore.Menus;
 
 public class LoginMenu
 {

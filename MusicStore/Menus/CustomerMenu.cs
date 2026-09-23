@@ -1,8 +1,8 @@
-﻿using Exam.Services;
+using MusicStore.Services;
 
-using Exam.Models;
+using MusicStore.Models;
 
-namespace Exam.Menus;
+namespace MusicStore.Menus;
 
 public class CustomerMenu
 {

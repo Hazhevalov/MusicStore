@@ -1,11 +1,11 @@
-﻿using Exam.Models;
-using Exam.Services;
+using MusicStore.Models;
+using MusicStore.Services;
 using Microsoft.Identity.Client;
 using Microsoft.IdentityModel.Tokens;
 using System.Data;
 using System.Numerics;
 
-namespace Exam.Menus;
+namespace MusicStore.Menus;
 
 public class ShopMenu
 {

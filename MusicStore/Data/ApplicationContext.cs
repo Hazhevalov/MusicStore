@@ -1,8 +1,8 @@
-﻿using Exam.Models;
+using MusicStore.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
-namespace Exam.Data
+namespace MusicStore.Data
 {
     public class ApplicationContext : DbContext
     {

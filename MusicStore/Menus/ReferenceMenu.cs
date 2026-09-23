@@ -1,6 +1,6 @@
-using Exam.Services;
+using MusicStore.Services;
 
-namespace Exam.Menus;
+namespace MusicStore.Menus;
 
 public class ReferenceMenu
 {

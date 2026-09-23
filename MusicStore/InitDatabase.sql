@@ -104,11 +104,12 @@ BEGIN TRY
         (N'Ivan Bondar',      85.98, DATEADD(day,  -45, @Today)),
         (N'Elena Tkachenko', 109.97, DATEADD(day,  -12, @Today));
 
+    /* Study-project demo credentials: admin/admin123, manager/manager123, seller/seller123. */
     INSERT INTO [dbo].[Users] ([Login], [PasswordHash], [Role])
     VALUES
         (N'admin',   N'PBKDF2-SHA256$210000$AsGwAxQnNT2ux0RXatCu9A==$N5eyKQHqjroi5lVnwJ7gQTVFIKPyjhSPBuNYBTNsyu8=', N'Administrator'),
-        (N'manager', N'PBKDF2-SHA256$210000$NQ6b5Img6WTHHyLDi5ciGw==$zzH+NRpuxnS+fpB6cUBFbajIUZjhA1qKoHJeJ2xUgrU=', N'Manager'),
-        (N'seller',  N'PBKDF2-SHA256$210000$gkBs5YVBEa45b1csdzGkqA==$w1KoDmr6/CfdJeK3yuEOB1aYQsSl04OWpV0WGVBfDXs=', N'Seller');
+        (N'manager', N'PBKDF2-SHA256$210000$10CvPBhIgxK0cI10D1DZAA==$pU3tX8zBaHe534NHhOqdOutZafdhB0wSfSyJCjMxRZ8=', N'Manager'),
+        (N'seller',  N'PBKDF2-SHA256$210000$7JcaljzIKZy+57gDc82n+Q==$+Qinhag6hHQvI7Ys44IuYt+LOct5PKS0dnFSSB46uKY=', N'Seller');
 
     INSERT INTO [dbo].[Plates]
         ([Title], [ArtistId], [PublisherId], [GenreId], [TrackCount],

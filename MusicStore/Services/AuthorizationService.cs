@@ -1,6 +1,6 @@
-using Exam.Models;
+using MusicStore.Models;
 
-namespace Exam.Services;
+namespace MusicStore.Services;
 
 public static class UserRoles
 {

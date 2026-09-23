@@ -1,9 +1,9 @@
-﻿using Exam.Models;
-using Exam.Services;
+using MusicStore.Models;
+using MusicStore.Services;
 using Microsoft.IdentityModel.Tokens;
 using System.Numerics;
 
-namespace Exam.Menus;
+namespace MusicStore.Menus;
 
 public class SearchMenu
 {

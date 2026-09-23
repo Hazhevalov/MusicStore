@@ -1,6 +1,6 @@
 using System.Security.Cryptography;
 
-namespace Exam.Helpers;
+namespace MusicStore.Helpers;
 
 public static class PasswordSecurity
 {

@@ -2,6 +2,8 @@
 
 A C# console application for managing a music record store. MusicStore brings together a record catalog, inventory tracking, sales, customers, reservations, and promotions in a menu-driven interface backed by Microsoft SQL Server.
 
+This is a **study project** for practicing C#, Entity Framework Core, relational database design, and role-based application workflows.
+
 ## Features
 
 - **Record catalog:** add, edit, list, and archive records; search by title, artist, or genre.
@@ -85,39 +87,29 @@ dotnet run --project MusicStore.csproj
 
 At startup, `DatabaseInitializer` applies pending migrations automatically, upgrades legacy plaintext password records to hashes, and checks the database connection. On success, the application displays the sign-in screen.
 
-A newly migrated database has no user accounts. Stop the application with `Ctrl+C` and provision an account before signing in.
+A newly migrated database has no user accounts. Stop the application with `Ctrl+C`, then load the supplied database initialization file as described below.
 
-### 4. Create your first account
+### 4. Initialize the database with sample data
 
-There is currently no registration or user-management menu. To bootstrap a local administrator, temporarily place this code in `Program.cs` after the successful database initialization check and before the services are created:
-
-```csharp
-using (var db = new Exam.Data.ApplicationContext())
-{
-    if (!db.Users.Any(u => u.Login == "admin"))
-    {
-        Console.Write("Choose a local admin password: ");
-        string password = Console.ReadLine() ?? "";
-        db.Users.Add(new Exam.Models.Users
-        {
-            Login = "admin",
-            PasswordHash = Exam.Helpers.PasswordSecurity.Hash(password),
-            Role = Exam.Services.UserRoles.Administrator
-        });
-        db.SaveChanges();
-    }
-}
-```
-
-Run the application and choose a nonempty password. This temporary bootstrap prompt echoes input; the normal sign-in prompt masks it. Remove the bootstrap code after the account is created, then sign in as `admin` with your chosen password.
-
-### Optional: load demo data
-
-[InitDatabase.sql](InitDatabase.sql) populates an already migrated database with sample records, customers, sales, reservations, promotions, and the `admin`, `manager`, and `seller` accounts.
+Open [InitDatabase.sql](InitDatabase.sql) in SQL Server Management Studio or another SQL client connected to your configured server, then execute the script. Run it after the first successful application startup has applied the schema migrations. It populates the database with sample records, customers, sales, reservations, promotions, and the existing demo accounts `admin`, `manager`, and `seller`; no manual account creation is needed.
 
 > **Destructive operation:** this script deletes all existing application data, including users, before inserting its demo data. Use it only with a disposable development database. It targets `MusicStore` through a `USE` statement.
 
-Run the script in your SQL client after the first successful migration. The demo accounts contain password hashes, but their plaintext passwords are not documented in the source. Set a known password hash using `Exam.Helpers.PasswordSecurity.Hash(...)` before attempting to sign in. Loading the script also replaces any administrator created in the previous step.
+After the script completes, restart the application:
+
+```powershell
+dotnet run --project MusicStore.csproj
+```
+
+Sign in with one of the accounts created by the initialization script:
+
+| Username | Password | Role |
+| --- | --- | --- |
+| `admin` | `admin123` | Administrator |
+| `manager` | `manager123` | Manager |
+| `seller` | `seller123` | Seller |
+
+These public demo credentials are provided for this study project's local sample database. Passwords are stored as salted hashes in the initialization script.
 
 ## Using the application
 
@@ -151,7 +143,7 @@ MusicStore/
 `-- Program.cs          Application entry point and service wiring
 ```
 
-The source currently uses the `Exam` namespace. Records are represented by the `Plates` model. Archiving preserves historical relationships, while database constraints, transactions, and row-version checks protect inventory and sales updates.
+The project's root namespace is `MusicStore`, with `MusicStore.Data`, `MusicStore.Helpers`, `MusicStore.Menus`, `MusicStore.Migrations`, `MusicStore.Models`, and `MusicStore.Services` organizing the source. Records are represented by the `Plates` model. Archiving preserves historical relationships, while database constraints, transactions, and row-version checks protect inventory and sales updates.
 
 ## Troubleshooting
 
@@ -160,7 +152,7 @@ The source currently uses the `Exam` namespace. Records are represented by the `
 | Missing `Microsoft.EntityFrameworkCore` or related namespaces | Complete the package setup above, then restore and rebuild. |
 | `appsettings.json` cannot be found | Ensure the copy settings above are present and rebuild; the file must be beside the executable. |
 | Database connection or migration error | Check the SQL Server instance, connection string, authentication, and database permissions. |
-| Sign-in always fails | A fresh database contains no users. Provision an account with a known password; demo usernames alone are insufficient. |
+| Sign-in always fails | Run `InitDatabase.sql` after schema migration, then use one of the demo accounts documented above. The script resets existing application data. |
 | An operation is unavailable | Check the signed-in account's role against the permissions table. |
 | A stock operation fails despite a positive quantity | Active reservations reduce available stock. Concurrent updates can also require retrying the operation. |
 

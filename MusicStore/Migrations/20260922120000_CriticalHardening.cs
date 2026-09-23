@@ -1,10 +1,10 @@
-using Exam.Data;
+using MusicStore.Data;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace Exam.Migrations;
+namespace MusicStore.Migrations;
 
 [DbContext(typeof(ApplicationContext))]
 [Migration("20260922120000_CriticalHardening")]

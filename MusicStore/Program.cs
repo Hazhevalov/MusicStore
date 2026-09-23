@@ -1,6 +1,6 @@
-﻿using Exam.Data;
-using Exam.Menus;
-using Exam.Services;
+using MusicStore.Data;
+using MusicStore.Menus;
+using MusicStore.Services;
 
 DatabaseInitializer dbInitializer = new();
 

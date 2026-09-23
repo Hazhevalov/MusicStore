@@ -1,8 +1,8 @@
-﻿using Exam.Data;
+using MusicStore.Data;
 using Microsoft.EntityFrameworkCore;
-using Exam.Helpers;
+using MusicStore.Helpers;
 
-namespace Exam.Data
+namespace MusicStore.Data
 {
     public class DatabaseInitializer
     {

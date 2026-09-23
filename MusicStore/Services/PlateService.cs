@@ -1,9 +1,9 @@
-﻿using Exam.Data;
-using Exam.Models;
+using MusicStore.Data;
+using MusicStore.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Numerics;
 
-namespace Exam.Services;
+namespace MusicStore.Services;
 
 public class PlateService
 {

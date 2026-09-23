@@ -1,6 +1,6 @@
-﻿using Exam.Models;
+using MusicStore.Models;
 
-namespace Exam.Menus;
+namespace MusicStore.Menus;
 
 public class MainMenu
 {
